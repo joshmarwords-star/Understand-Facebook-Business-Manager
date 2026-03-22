@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en" style="background:#07080f !important;color-scheme:dark;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta Business Manager — Complete Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg:   #07080f;
+  --bg2:  #0d0f1a;
+  --bg3:  #12152b;
+  --bdr:  #1e2240;
+  --text: #d4d8f0;
+  --mut:  #5a607a;
+  --bm:   #4f8ef7;
+  --bm-g: rgba(79,142,247,0.18);
+  --pg:   #2ec08a;
+  --pg-g: rgba(46,192,138,0.18);
+  --ad:   #f7934f;
+  --ad-g: rgba(247,147,79,0.18);
+  --ig:   #e040fb;
+  --ig-g: rgba(224,64,251,0.18);
+  --px:   #4fc3f7;
+  --px-g: rgba(79,195,247,0.18);
+  --ct:   #6bcb77;
+  --ct-g: rgba(107,203,119,0.12);
+}
+
+html, * { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: #07080f !important; }
+
+body {
+  font-family: 'Syne', sans-serif;
+  background: #07080f !important;
+  color: #d4d8f0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::after  { content:''; position:fixed; inset:0; background:#07080f; z-index:-2; pointer-events:none; }
+body::before { content:''; position:fixed; inset:0;
+  background-image: linear-gradient(rgba(79,142,247,0.035) 1px,transparent 1px),
+                    linear-gradient(90deg,rgba(79,142,247,0.035) 1px,transparent 1px);
+  background-size:42px 42px; pointer-events:none; z-index:0; }
+
+/* ── STICKY NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(7,8,15,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #1a1e36;
+  padding: 0 20px;
+  display: flex; align-items: center; gap: 4px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav-logo {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  color: var(--bm); letter-spacing: 2px; text-transform: uppercase;
+  padding: 14px 14px 14px 0; flex-shrink: 0; opacity: 0.7;
+  border-right: 1px solid #1a1e36; margin-right: 4px;
+}
+.nav-btn { cursor:pointer; user-select:none;
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: #3a4060; text-decoration: none;
+  padding: 14px 12px; white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s; flex-shrink: 0;
+}
+.nav-btn:hover { color: var(--bm); }
+.nav-btn.active { color: var(--bm); border-bottom-color: var(--bm); }
+
+/* ── WRAP ── */
+.wrap { position:relative; z-index:1; max-width:960px; margin:0 auto; padding:48px 20px 80px; }
+
+/* ── MAIN HEADER ── */
+.main-header { text-align:center; margin-bottom:56px; }
+.eyebrow {
+  font-family:'DM Mono',monospace; font-size:10px; letter-spacing:3px;
+  color:var(--bm); text-transform:uppercase; display:block; margin-bottom:14px; opacity:0.7;
+}
+.main-header h1 {
+  font-size:clamp(26px,5vw,42px); font-weight:800; line-height:1.1; color:#fff; margin-bottom:12px;
+}
+.main-header h1 em { font-style:normal; color:var(--bm); }
+.main-header p { font-size:14px; color:var(--mut); line-height:1.65; max-width:540px; margin:0 auto; }
+
+/* ── SECTION TITLES ── */
+.sec { margin-bottom: 56px; scroll-margin-top: 52px; }
+.sec-title {
+  font-size:19px; font-family:'Syne',sans-serif; font-weight:800;
+  letter-spacing:-0.2px; color:#ffffff;
+  margin-bottom:24px; display:flex; align-items:center; gap:14px;
+}
+.sec-title::after { content:''; flex:1; height:1px; background:var(--bdr); }
+
+/* ── DIVIDER ── */
+.page-divider {
+  height: 1px; background: linear-gradient(90deg, transparent, #1e2240 20%, #1e2240 80%, transparent);
+  margin: 56px 0;
+}
+
+/* ════════════════════════════════ */
+/*  SECTION A — HIERARCHY TREE     */
+/* ════════════════════════════════ */
+.lvl-label {
+  font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px;
+  text-transform:uppercase; color:#4a5480; text-align:center; margin-bottom:10px;
+}
+.conn-v      { width:2px; height:28px; background:#1a1e36; margin:0 auto; }
+.conn-h-wrap { height:2px; width:90%; max-width:760px; background:#1a1e36; margin:0 auto; }
+.branch-area { display:flex; justify-content:center; gap:12px; width:90%; max-width:760px; margin:0 auto; flex-wrap:wrap; }
+
+.node-personal {
+  background:#0d0f1a; border:1.5px solid #252840;
+  border-radius:14px; padding:14px 20px; text-align:center; width:270px; margin:0 auto;
+}
+.node-personal .nt { font-size:13px; font-weight:700; color:#8890b0; }
+.node-personal .ns { font-size:11px; color:#3a4060; margin-top:3px; font-family:'DM Mono',monospace; }
+
+.node-bm-tree {
+  background:linear-gradient(135deg,#121e48,#0c1430);
+  border:2px solid var(--bm); border-radius:16px;
+  padding:20px 28px; text-align:center; width:310px; margin:0 auto;
+  box-shadow:0 0 40px var(--bm-g), 0 0 0 4px rgba(79,142,247,0.05);
+  position:relative;
+}
+.node-bm-tree::before {
+  content:'★ CROWN ASSET';
+  position:absolute; top:-11px; left:50%; transform:translateX(-50%);
+  font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px;
+  color:var(--bm); background:#07080f; padding:0 10px;
+}
+.node-bm-tree .ni  { font-size:28px; margin-bottom:6px; display:block; }
+.node-bm-tree .nt  { font-size:17px; font-weight:800; color:#fff; }
+.node-bm-tree .ns  { font-size:11px; color:rgba(255,255,255,0.4); margin-top:4px; }
+.node-bm-tree .np  { display:flex; flex-wrap:wrap; justify-content:center; gap:5px; margin-top:10px; }
+.bm-pill {
+  font-size:10px; padding:3px 9px; border-radius:10px;
+  border:1px solid rgba(79,142,247,0.25);
+  background:rgba(79,142,247,0.08); color:#88aaff;
+  font-family:'DM Mono',monospace;
+}
+
+.col-wrap { display:flex; flex-direction:column; align-items:center; flex:1; min-width:128px; max-width:160px; }
+.tick-v   { width:2px; height:28px; background:#1a1e36; }
+
+.node-asset {
+  border-radius:12px; padding:12px 10px; text-align:center;
+  width:100%; border:1.5px solid; transition:transform 0.15s; cursor:default;
+}
+.node-asset:hover { transform:translateY(-3px); }
+.node-asset .ni2 { font-size:22px; margin-bottom:5px; display:block; }
+.node-asset .nt2 { font-size:12px; font-weight:800; margin-bottom:2px; }
+.node-asset .ns2 { font-size:10px; color:var(--mut); line-height:1.4; }
+
+.na-page    { background:#0b1c14; border-color:var(--pg); box-shadow:0 4px 20px var(--pg-g); }
+.na-page .nt2    { color:var(--pg); }
+.na-adacc   { background:#1c1208; border-color:var(--ad); box-shadow:0 4px 20px var(--ad-g); }
+.na-adacc .nt2   { color:var(--ad); }
+.na-ig      { background:#17081c; border-color:var(--ig); box-shadow:0 4px 20px var(--ig-g); }
+.na-ig .nt2      { color:var(--ig); }
+.na-pixel   { background:#061420; border-color:var(--px); box-shadow:0 4px 20px var(--px-g); }
+.na-pixel .nt2   { color:var(--px); }
+.na-catalog { background:#081808; border-color:var(--ct); box-shadow:0 4px 20px var(--ct-g); }
+.na-catalog .nt2 { color:var(--ct); }
+
+.rstack { display:flex; flex-direction:column; gap:3px; width:100%; margin-top:6px; }
+.rt {
+  border-radius:4px; padding:3px 5px; font-size:9px; font-weight:700;
+  text-align:center; font-family:'DM Mono',monospace; letter-spacing:0.3px;
+}
+.rt-a  { background:rgba(255,100,100,0.1); color:#ff8888; border:1px solid rgba(255,100,100,0.18); }
+.rt-e  { background:rgba(79,142,247,0.1);  color:#88b4ff; border:1px solid rgba(79,142,247,0.18); }
+.rt-ad { background:rgba(247,147,79,0.1);  color:#ffb888; border:1px solid rgba(247,147,79,0.18); }
+.rt-an { background:rgba(224,64,251,0.1);  color:#e888ff; border:1px solid rgba(224,64,251,0.18); }
+.rt-m  { background:rgba(46,192,138,0.1);  color:#66ddb0; border:1px solid rgba(46,192,138,0.18); }
+
+/* ── Ownership cards ── */
+.own-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:10px; }
+.own-card {
+  background:var(--bg2); border:1px solid #1a1e36;
+  border-radius:12px; padding:14px 16px; transition:border-color 0.2s;
+}
+.own-card:hover { border-color:#2a2e50; }
+.own-card .oct { font-size:12px; font-weight:800; color:#ffffff; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+.oc-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.own-card ul { list-style:none; display:flex; flex-direction:column; gap:6px; }
+.own-card ul li { font-size:11px; color:#6870a0; line-height:1.5; display:flex; align-items:flex-start; gap:7px; }
+.own-card ul li .arr { color:#2a2e50; flex-shrink:0; }
+.own-card ul li strong { color:#9098c0; }
+
+.warn-box {
+  background:rgba(255,23,68,0.06); border:1px solid rgba(255,23,68,0.22);
+  border-radius:14px; padding:16px 20px; margin-top:14px;
+  display:flex; align-items:flex-start; gap:12px;
+}
+.warn-icon { font-size:20px; flex-shrink:0; }
+.warn-text { font-size:12px; color:#ff8888; line-height:1.65; }
+.warn-text strong { color:#ff5555; }
+
+/* ════════════════════════════════ */
+/*  SECTION B — CROWN CARD         */
+/* ════════════════════════════════ */
+.crown-card {
+  background:#0d1428; border:1px solid var(--bm);
+  border-radius:20px; padding:28px 30px; position:relative; overflow:hidden;
+  box-shadow:0 0 60px var(--bm-g), inset 0 0 60px rgba(79,142,247,0.03);
+}
+.crown-card::before {
+  content:''; position:absolute; top:-60px; right:-60px;
+  width:200px; height:200px;
+  background:radial-gradient(circle,rgba(79,142,247,0.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.crown-top { display:flex; align-items:flex-start; gap:18px; margin-bottom:20px; flex-wrap:wrap; }
+.crown-icon { font-size:40px; line-height:1; flex-shrink:0; }
+.crown-info h2 { font-size:21px; font-weight:800; color:#ffffff; margin-bottom:6px; letter-spacing:-0.3px; }
+.crown-info p  { color:#8890b0; font-size:13px; line-height:1.65; font-weight:400; }
+.crown-powers { display:grid; grid-template-columns:repeat(auto-fill,minmax(185px,1fr)); gap:9px; margin-top:4px; }
+.power-pill {
+  background:rgba(79,142,247,0.08); border:1px solid rgba(79,142,247,0.22);
+  border-radius:8px; padding:9px 13px; font-size:12px; color:#a8c0f8;
+  display:flex; align-items:center; gap:8px;
+}
+.power-pill .dot { width:5px; height:5px; border-radius:50%; background:var(--bm); flex-shrink:0; }
+.crown-alert {
+  background:rgba(255,23,68,0.07); border:1px solid rgba(255,23,68,0.3);
+  border-radius:12px; padding:14px 18px;
+  display:flex; align-items:flex-start; gap:12px; margin-top:18px;
+}
+.crown-alert .cai { font-size:20px; flex-shrink:0; }
+.crown-alert p { font-size:12.5px; color:#ff8080; line-height:1.65; font-weight:400; }
+.crown-alert p strong { color:#ff4444; }
+
+/* ════════════════════════════════ */
+/*  SECTION C — PEOPLE SPLIT       */
+/* ════════════════════════════════ */
+.hier-split { display:flex; gap:0; align-items:flex-start; width:100%; margin-top:4px; }
+.hier-half  { flex:1; min-width:0; }
+.h-drop      { width:2px; height:28px; background:#1a1e36; margin:0 auto; }
+.h-drop-s    { width:2px; height:14px; background:#1a1e36; margin:0 auto; }
+.hier-lbl {
+  text-align:center; font-size:10px; font-family:'DM Mono',monospace;
+  letter-spacing:1.5px; text-transform:uppercase; padding:6px 12px;
+  border-radius:20px; margin:0 auto; width:fit-content; display:block;
+}
+.hl-people { background:rgba(79,142,247,0.1); color:var(--bm); border:1px solid rgba(79,142,247,0.2); }
+.hl-assets { background:rgba(46,192,138,0.1); color:var(--pg); border:1px solid rgba(46,192,138,0.2); }
+.hier-mid  { width:2px; display:flex; flex-direction:column; align-items:center; padding-top:28px; flex-shrink:0; margin:0 10px; }
+.hier-mid-line  { flex:1; width:2px; background:#1a1e36; }
+.hier-mid-label { font-size:9px; font-family:'DM Mono',monospace; color:#2e3560; padding:6px 0; writing-mode:vertical-rl; letter-spacing:2px; text-transform:uppercase; }
+
+.person-stack { display:flex; flex-direction:column; gap:8px; padding:0 4px; }
+.person-node  {
+  background:var(--bg2); border:1px solid var(--bdr);
+  border-radius:10px; padding:10px 12px; transition:border-color 0.2s;
+}
+.person-node:hover { border-color:#2e3560; }
+.pn-admin    { border-left:3px solid rgba(255,100,100,0.5) !important; }
+.pn-employee { border-left:3px solid rgba(79,142,247,0.5) !important; }
+.pn-partner  { border-left:3px solid rgba(255,200,50,0.5) !important; }
+.pn-sysuser  { border-left:3px solid rgba(79,195,247,0.4) !important; }
+.pn-top  { display:flex; align-items:center; gap:8px; margin-bottom:7px; }
+.pn-ico  { font-size:16px; flex-shrink:0; }
+.pn-name { font-size:12px; font-weight:800; color:#ffffff; }
+.pn-sc   { font-size:10px; color:var(--mut); margin-top:1px; }
+.pn-badge {
+  margin-left:auto; flex-shrink:0; font-size:9px; font-weight:700;
+  padding:2px 8px; border-radius:10px; border:1px solid;
+  font-family:'DM Mono',monospace; letter-spacing:0.3px; text-transform:uppercase;
+}
+.pn-can { display:flex; flex-wrap:wrap; gap:4px; }
+.pn-can span { font-size:10px; color:#8890b0; background:#12152b; border-radius:4px; padding:2px 7px; border:1px solid var(--bdr); }
+
+.asset-stack { display:flex; flex-direction:column; gap:8px; padding:0 4px; }
+.arc { border-radius:10px; padding:10px 12px; border:1.5px solid; transition:transform 0.12s; }
+.arc:hover { transform:translateX(2px); }
+.arc-left  { display:flex; align-items:center; gap:8px; margin-bottom:7px; }
+.arc-ico   { font-size:18px; flex-shrink:0; }
+.arc-title { font-size:12px; font-weight:800; }
+.arc-sub   { font-size:10px; color:var(--mut); margin-top:1px; }
+.arc-roles { display:flex; flex-wrap:wrap; gap:4px; }
+.arc-roles .role-tag { display:inline-block; }
+
+.an-page-s    { background:#0d1e18; border-color:rgba(46,192,138,0.35); }
+.an-adacc-s   { background:#1e1408; border-color:rgba(247,147,79,0.35); }
+.an-ig-s      { background:#1a0a20; border-color:rgba(224,64,251,0.35); }
+.an-pixel-s   { background:#081520; border-color:rgba(79,195,247,0.35); }
+.an-catalog-s { background:#0a1a10; border-color:rgba(107,203,119,0.3); }
+
+.role-tag { border-radius:4px; padding:3px 6px; font-size:10px; font-weight:600; text-align:center; }
+.rt-admin   { background:rgba(255,100,100,0.1); color:#ff8888; border:1px solid rgba(255,100,100,0.2); }
+.rt-editor  { background:rgba(79,142,247,0.1);  color:#88b4ff; border:1px solid rgba(79,142,247,0.2); }
+.rt-adv     { background:rgba(247,147,79,0.1);  color:#ffb888; border:1px solid rgba(247,147,79,0.2); }
+.rt-analyst { background:rgba(224,64,251,0.1);  color:#e888ff; border:1px solid rgba(224,64,251,0.2); }
+.rt-mod     { background:rgba(46,192,138,0.1);  color:#66ddb0; border:1px solid rgba(46,192,138,0.2); }
+
+.hier-note {
+  display:flex; align-items:flex-start; gap:10px;
+  background:rgba(79,142,247,0.06); border:1px solid rgba(79,142,247,0.15);
+  border-radius:10px; padding:12px 16px; margin-top:16px;
+  font-size:12px; color:#7890c8; line-height:1.6;
+}
+.hier-note strong { color:#a8c0f8; }
+
+/* ════════════════════════════════ */
+/*  SECTION D — FLOW CARDS         */
+/* ════════════════════════════════ */
+.flows-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; }
+.flow-card { background:var(--bg2); border:1px solid var(--bdr); border-radius:16px; padding:18px; transition:border-color 0.2s; }
+.flow-card:hover { border-color:#2e3560; }
+.fc-header { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.fc-avatar { width:36px; height:36px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; border:1.5px solid; }
+.fca-bm   { background:rgba(79,142,247,0.15);  border-color:var(--bm); }
+.fca-page { background:rgba(46,192,138,0.15);  border-color:var(--pg); }
+.fca-ad   { background:rgba(247,147,79,0.15);  border-color:var(--ad); }
+.fca-part { background:rgba(255,200,50,0.1);   border-color:#ffc832; }
+.fc-name { font-size:13px; font-weight:800; color:#ffffff; }
+.fc-role { font-size:10px; color:var(--mut); font-family:'DM Mono',monospace; }
+.access-list { list-style:none; }
+.access-list li { display:flex; align-items:flex-start; gap:8px; padding:5px 0; font-size:12px; color:#8890b0; border-bottom:1px solid #0f1220; line-height:1.5; }
+.access-list li:last-child { border-bottom:none; }
+.access-list li .tk { font-size:13px; flex-shrink:0; }
+.access-list li span { color:#c0c8e8; }
+
+/* ════════════════════════════════ */
+/*  SECTION E — HACK DANGER        */
+/* ════════════════════════════════ */
+.hack-intro {
+  background:rgba(239,68,68,0.07); border:1px solid rgba(239,68,68,0.22);
+  border-radius:14px; padding:15px 20px; margin-bottom:18px;
+  font-size:13px; color:#ff9999; line-height:1.65;
+}
+.hack-intro strong { color:#ff5555; }
+.hack-cards { display:flex; flex-direction:column; gap:10px; }
+.hack-card { border-radius:14px; overflow:hidden; border:1px solid var(--bdr); cursor:pointer; background:var(--bg2); transition:border-color 0.2s; }
+.hack-card:hover { border-color:#2e3560; }
+.hc-header { display:flex; align-items:center; gap:14px; padding:16px 20px; background:var(--bg2); }
+.sev-bar   { width:4px; border-radius:2px; flex-shrink:0; align-self:stretch; margin:-16px 0; min-height:52px; }
+.sv-lo  { background:#eab308; box-shadow:0 0 8px rgba(234,179,8,0.4); }
+.sv-me  { background:#f97316; box-shadow:0 0 8px rgba(249,115,22,0.4); }
+.sv-hi  { background:#ef4444; box-shadow:0 0 10px rgba(239,68,68,0.45); }
+.sv-cr  { background:#ff1744; box-shadow:0 0 14px rgba(255,23,68,0.6); animation:pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.45} }
+.hc-main  { flex:1; }
+.hc-title { font-size:14px; font-weight:800; color:#ffffff; margin-bottom:2px; }
+.hc-who   { font-size:10px; color:var(--mut); font-family:'DM Mono',monospace; }
+.sev-badge { font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; letter-spacing:0.4px; text-transform:uppercase; font-family:'DM Mono',monospace; border:1px solid; white-space:nowrap; }
+.sb-lo { background:rgba(234,179,8,0.12);  color:#facc15; border-color:rgba(234,179,8,0.3); }
+.sb-me { background:rgba(249,115,22,0.12); color:#fb923c; border-color:rgba(249,115,22,0.3); }
+.sb-hi { background:rgba(239,68,68,0.12);  color:#f87171; border-color:rgba(239,68,68,0.3); }
+.sb-cr { background:rgba(255,23,68,0.12);  color:#ff5577; border-color:rgba(255,23,68,0.4); }
+.exp-arr { font-size:11px; color:var(--mut); transition:transform 0.3s; flex-shrink:0; }
+.exp-arr.open { transform:rotate(180deg); }
+.hc-body { max-height:0; overflow:hidden; transition:max-height 0.35s ease,padding 0.35s ease; background:var(--bg3); padding:0 20px; }
+.hc-body.open { max-height:540px; padding:0 20px 20px; }
+.hc-div  { height:1px; background:var(--bdr); margin-bottom:14px; }
+.dmg-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px; }
+.dmg-item { background:var(--bg2); border:1px solid var(--bdr); border-radius:8px; padding:10px 12px; }
+.dmg-item .dl2 { color:var(--mut); font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.5px; text-transform:uppercase; margin-bottom:5px; }
+.dmg-item .dv  { color:var(--text); font-size:12px; line-height:1.5; }
+.hc-tip { background:rgba(79,142,247,0.07); border:1px solid rgba(79,142,247,0.18); border-radius:8px; padding:10px 13px; font-size:12px; color:#7890c8; line-height:1.65; }
+.hc-tip strong { color:var(--bm); }
+.crit-card { border-color:rgba(255,23,68,0.35) !important; }
+.crit-card .hc-header { background:rgba(255,23,68,0.05); }
+.crit-card .hc-body   { background:rgba(10,5,8,0.95); }
+.crit-card .dmg-item  { background:#130a0c; border-color:rgba(255,23,68,0.2); }
+.crit-card .hc-tip    { background:rgba(255,23,68,0.07); border-color:rgba(255,23,68,0.25); color:#ff9090; }
+.crit-card .hc-tip strong { color:#ff4444; }
+
+/* ════════════════════════════════ */
+/*  SECTION F — COMPARE + RULES    */
+/* ════════════════════════════════ */
+.compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:28px; }
+.compare-card { border-radius:16px; padding:22px; border:1.5px solid; }
+.cc-bad  { background:rgba(239,68,68,0.06);  border-color:rgba(239,68,68,0.28); }
+.cc-good { background:rgba(46,192,138,0.06); border-color:rgba(46,192,138,0.28); }
+.cc-title { font-size:13px; font-weight:800; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+.cc-bad .cc-title  { color:#ff7777; }
+.cc-good .cc-title { color:var(--pg); }
+.cc-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.cc-list li { font-size:12px; color:#8890b0; display:flex; align-items:flex-start; gap:8px; line-height:1.55; }
+
+.rules-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+.rule-card  { background:var(--bg2); border:1px solid var(--bdr); border-radius:12px; padding:18px; transition:border-color 0.2s; }
+.rule-card:hover { border-color:#2e3560; }
+.rule-card .rn { font-family:'DM Mono',monospace; font-size:26px; font-weight:500; color:var(--bm); opacity:0.35; line-height:1; margin-bottom:10px; }
+.rule-card h4  { font-size:13px; font-weight:800; color:#ffffff; margin-bottom:7px; }
+.rule-card p   { font-size:12px; color:#7078a0; line-height:1.65; font-weight:400; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px) {
+  .compare-grid { grid-template-columns:1fr; }
+  .hier-split   { flex-direction:column; gap:16px; }
+  .hier-mid     { display:none; }
+  .hier-half    { width:100%; }
+  .dmg-grid     { grid-template-columns:1fr; }
+  .branch-area  { gap:8px; }
+  .col-wrap     { min-width:100px; }
+  .hc-body.open { max-height:720px; }
+  .crown-powers { grid-template-columns:1fr 1fr; }
+  .flows-grid   { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav class="nav">
+  <div class="nav-logo">Meta BM</div>
+  <span class="nav-btn" onclick="navJump('hierarchy')">Hierarchy</span>
+  <span class="nav-btn" onclick="navJump('ownership')">Ownership</span>
+  <span class="nav-btn" onclick="navJump('why-bm')">Why BM</span>
+  <span class="nav-btn" onclick="navJump('people')">People</span>
+  <span class="nav-btn" onclick="navJump('roles')">Roles</span>
+  <span class="nav-btn" onclick="navJump('hacked')">If Hacked</span>
+  <span class="nav-btn" onclick="navJump('compare')">With vs Without</span>
+  <span class="nav-btn" onclick="navJump('rules')">Golden Rules</span>
+</nav>
+
+<div class="wrap">
+
+  <!-- MAIN HEADER -->
+  <div class="main-header">
+    <span class="eyebrow">// Meta Business Manager — Complete Guide</span>
+    <h1>The Full Hierarchy, Access &amp;<br><em>Security Guide</em></h1>
+    <p>Everything in one place — how BM, assets, people and roles stack together, and what happens when any level gets compromised.</p>
+  </div>
+
+  <!-- ═══════════════════════════════ -->
+  <!-- A. HIERARCHY TREE              -->
+  <!-- ═══════════════════════════════ -->
+  <div class="sec" id="hierarchy">
+    <div class="sec-title"><span style="color:#4f8ef7;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;flex-shrink:0">01</span><span>— The Complete Hierarchy Tree</span></div>
+
+    <div class="lvl-label">Level 0 — The Foundation</div>
+    <div class="node-personal">
+      <div class="nt">👤 Personal Facebook Account</div>
+      <div class="ns">Required to create &amp; administer a Business Manager</div>
+    </div>
+
+    <div class="conn-v"></div>
+
+    <div class="lvl-label">Level 1 — The Crown</div>
+    <div class="node-bm-tree">
+      <span class="ni">🏢</span>
+      <div class="nt">Business Manager</div>
+      <div class="ns">Owns &amp; controls all assets below</div>
+      <div class="np">
+        <span class="bm-pill">👑 Admin</span>
+        <span class="bm-pill">🧑 Employee</span>
+        <span class="bm-pill">🤝 Partner BM</span>
+        <span class="bm-pill">🤖 System User</span>
+      </div>
+    </div>
+
+    <div class="conn-v"></div>
+    <div class="conn-h-wrap"></div>
+
+    <div class="lvl-label" style="margin-top:0">Level 2 — Assets (Owned or Shared into BM)</div>
+    <div class="branch-area">
+
+      <div class="col-wrap">
+        <div class="tick-v"></div>
+        <div class="node-asset na-page">
+          <span class="ni2">📄</span>
+          <div class="nt2">Facebook Page</div>
+          <div class="ns2">Brand identity &amp; organic</div>
+        </div>
+        <div class="rstack">
+          <div class="rt rt-a">Admin</div><div class="rt rt-e">Editor</div>
+          <div class="rt rt-m">Moderator</div><div class="rt rt-ad">Advertiser</div>
+          <div class="rt rt-an">Analyst</div>
+        </div>
+      </div>
+
+      <div class="col-wrap">
+        <div class="tick-v"></div>
+        <div class="node-asset na-adacc">
+          <span class="ni2">💳</span>
+          <div class="nt2">Ad Account</div>
+          <div class="ns2">Campaigns, spend &amp; billing</div>
+        </div>
+        <div class="rstack">
+          <div class="rt rt-a">Admin</div>
+          <div class="rt rt-ad">Advertiser</div>
+          <div class="rt rt-an">Analyst</div>
+        </div>
+      </div>
+
+      <div class="col-wrap">
+        <div class="tick-v"></div>
+        <div class="node-asset na-ig">
+          <span class="ni2">📸</span>
+          <div class="nt2">Instagram</div>
+          <div class="ns2">Linked via FB Page</div>
+        </div>
+        <div class="rstack">
+          <div class="rt rt-a">Full Access</div>
+          <div class="rt rt-ad">Create Ads</div>
+          <div class="rt rt-an">View Only</div>
+        </div>
+      </div>
+
+      <div class="col-wrap">
+        <div class="tick-v"></div>
+        <div class="node-asset na-pixel">
+          <span class="ni2">🔬</span>
+          <div class="nt2">Pixel / CAPI</div>
+          <div class="ns2">Tracking &amp; attribution</div>
+        </div>
+        <div class="rstack">
+          <div class="rt rt-a">Admin</div>
+          <div class="rt rt-ad">Advertiser</div>
+          <div class="rt rt-an">Analyst</div>
+        </div>
+      </div>
+
+      <div class="col-wrap">
+        <div class="tick-v"></div>
+        <div class="node-asset na-catalog">
+          <span class="ni2">🗃</span>
+          <div class="nt2">Catalog</div>
+          <div class="ns2">Product feeds for DPA</div>
+        </div>
+        <div class="rstack">
+          <div class="rt rt-a">Admin</div>
+          <div class="rt rt-ad">Advertiser</div>
+          <div class="rt rt-an">Analyst</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ -->
+  <!-- B. OWNERSHIP                   -->
+  <!-- ═══════════════════════════════ -->
+  <div class="sec" id="ownership">
+    <div class="sec-title"><span style="color:#4f8ef7;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;flex-shrink:0">02</span><span>— Ownership Rules Per Asset</span></div>
+    <div class="own-grid">
+
+      <div class="own-card">
+        <div class="oct"><div class="oc-dot" style="background:var(--ad)"></div>Ad Account</div>
+        <ul>
+          <li><span class="arr">→</span><span><strong>Created in BM:</strong> BM owns it permanently — cannot be transferred out</span></li>
+          <li><span class="arr">→</span><span><strong>Personal ad account:</strong> Individual owns it, can be claimed by BM</span></li>
+          <li><span class="arr">→</span><span>One owner only. Shared access ≠ ownership</span></li>
+          <li><span class="arr">→</span><span>Default limit: 25 ad accounts per BM</span></li>
+        </ul>
+      </div>
+
+      <div class="own-card">
+        <div class="oct"><div class="oc-dot" style="background:var(--pg)"></div>Facebook Page</div>
+        <ul>
+          <li><span class="arr">→</span><span><strong>BM-owned:</strong> Full control, all roles managed from BM</span></li>
+          <li><span class="arr">→</span><span><strong>Shared to BM:</strong> Original owner retains control, BM gets assigned access</span></li>
+          <li><span class="arr">→</span><span>Can only be owned by one BM at a time</span></li>
+          <li><span class="arr">→</span><span>Required as identity for running most Meta ads</span></li>
+        </ul>
+      </div>
+
+      <div class="own-card">
+        <div class="oct"><div class="oc-dot" style="background:var(--px)"></div>Pixel / CAPI</div>
+        <ul>
+          <li><span class="arr">→</span><span><strong>Created in Events Manager</strong> inside the BM</span></li>
+          <li><span class="arr">→</span><span>Owned by the BM — survives all staff changes</span></li>
+          <li><span class="arr">→</span><span>Shared to specific ad accounts within BM or partner BMs</span></li>
+          <li><span class="arr">→</span><span>One pixel can serve multiple ad accounts</span></li>
+        </ul>
+      </div>
+
+      <div class="own-card">
+        <div class="oct"><div class="oc-dot" style="background:var(--ig)"></div>Instagram</div>
+        <ul>
+          <li><span class="arr">→</span><span>Must be a <strong>Professional Account</strong> (Business or Creator)</span></li>
+          <li><span class="arr">→</span><span>Connected to a Facebook Page inside the BM</span></li>
+          <li><span class="arr">→</span><span>Access flows through the linked Facebook Page</span></li>
+          <li><span class="arr">→</span><span>Can run ads independently once connected to ad account</span></li>
+        </ul>
+      </div>
+
+      <div class="own-card">
+        <div class="oct"><div class="oc-dot" style="background:var(--ct)"></div>Catalog</div>
+        <ul>
+          <li><span class="arr">→</span><span><strong>Created in Commerce Manager</strong> inside the BM</span></li>
+          <li><span class="arr">→</span><span>Owned by the BM, shared to ad accounts for DPA</span></li>
+          <li><span class="arr">→</span><span>One catalog can serve multiple ad accounts</span></li>
+          <li><span class="arr">→</span><span>Can be shared to partner BMs</span></li>
+        </ul>
+      </div>
+
+      <div class="own-card">
+        <div class="oct"><div class="oc-dot" style="background:var(--bm)"></div>Business Manager</div>
+        <ul>
+          <li><span class="arr">→</span><span>Tied to a personal Facebook account — that person is the first Admin</span></li>
+          <li><span class="arr">→</span><span>Default limit: 2 BMs per personal account</span></li>
+          <li><span class="arr">→</span><span>BM assets <strong>cannot</strong> move to another BM if owned</span></li>
+          <li><span class="arr">→</span><span>Partner BMs connect externally — they don't merge</span></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="warn-box">
+      <div class="warn-icon">⚠️</div>
+      <div class="warn-text"><strong>Critical — Ownership vs Access.</strong> Assets created inside a BM are permanently owned by that BM. They can be <em>shared</em> to other BMs but ownership never transfers. If you lose BM access, you lose the asset — this is why everything must be created inside the BM, never a personal account.</div>
+    </div>
+  </div>
+
+  <div class="page-divider"></div>
+
+  <!-- ═══════════════════════════════ -->
+  <!-- C. WHY BM = GOD MODE           -->
+  <!-- ═══════════════════════════════ -->
+  <div class="sec" id="why-bm">
+    <div class="sec-title"><span style="color:#4f8ef7;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;flex-shrink:0">03</span><span>— Why Business Manager Is the Crown Jewel</span></div>
+    <div class="crown-card">
+      <div class="crown-top">
+        <div class="crown-icon">👑</div>
+        <div class="crown-info">
+          <h2>Business Manager = God Mode</h2>
+          <p>Your Business Manager is the single container that <strong>owns and controls everything</strong> — ad accounts, pages, pixels, catalogs, Instagram accounts, and every person who has any access to any of it. A BM Admin can override, remove, or reassign anything inside it, including other admins.</p>
+        </div>
+      </div>
+      <div class="crown-powers">
+        <div class="power-pill"><div class="dot"></div>Add/remove all users &amp; their roles</div>
+        <div class="power-pill"><div class="dot"></div>Owns all ad accounts created in it</div>
+        <div class="power-pill"><div class="dot"></div>Controls pixel &amp; catalog access</div>
+        <div class="power-pill"><div class="dot"></div>Invites &amp; removes partner agencies</div>
+        <div class="power-pill"><div class="dot"></div>Can claim or release Pages</div>
+        <div class="power-pill"><div class="dot"></div>Manages system user API tokens</div>
+        <div class="power-pill"><div class="dot"></div>Controls billing across ad accounts</div>
+        <div class="power-pill"><div class="dot"></div>Can lock out every other user</div>
+      </div>
+      <div class="crown-alert">
+        <div class="cai">🚨</div>
+        <p>If a <strong>BM Admin account gets hacked or goes rogue</strong>, the attacker gains instant control over <strong>every ad account, every page, every pixel</strong> and every person's access. They can spend your entire ad budget, lock you out, steal audience data, and remove your own admin access — all before you can react.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ -->
+  <!-- D. PEOPLE & ASSETS SPLIT       -->
+  <!-- ═══════════════════════════════ -->
+  <div class="sec" id="people">
+    <div class="sec-title"><span style="color:#4f8ef7;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;flex-shrink:0">04</span><span>— People with Access vs Assets Inside BM</span></div>
+
+    <div style="display:flex;flex-direction:column;align-items:center;">
+      <div class="node-bm-tree" style="width:280px">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(79,142,247,0.6);text-transform:uppercase;margin-bottom:4px;">The Container</div>
+        <div style="font-size:15px;font-weight:700;color:#fff;">🏢 Business Manager</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:3px;">Controls all access &amp; owns all assets</div>
+      </div>
+    </div>
+
+    <div class="hier-split" style="margin-top:24px;">
+
+      <div class="hier-half">
+        <div class="h-drop"></div>
+        <div class="hier-lbl hl-people">👤 People with Access</div>
+        <div class="h-drop-s"></div>
+        <div class="person-stack">
+
+          <div class="person-node pn-admin">
+            <div class="pn-top">
+              <span class="pn-ico">👑</span>
+              <div><div class="pn-name">BM Admin</div><div class="pn-sc">Full BM control</div></div>
+              <span class="pn-badge" style="background:rgba(255,100,100,0.12);color:#ff8080;border-color:rgba(255,100,100,0.3)">God Mode</span>
+            </div>
+            <div class="pn-can">
+              <span>✅ All assets</span><span>✅ All users</span><span>✅ Billing</span><span>✅ Remove admins</span>
+            </div>
+          </div>
+
+          <div class="person-node pn-employee">
+            <div class="pn-top">
+              <span class="pn-ico">🧑</span>
+              <div><div class="pn-name">BM Employee</div><div class="pn-sc">Assigned assets only</div></div>
+              <span class="pn-badge" style="background:rgba(79,142,247,0.1);color:#88b4ff;border-color:rgba(79,142,247,0.25)">Limited</span>
+            </div>
+            <div class="pn-can">
+              <span>✅ Assigned assets</span><span>❌ Other users</span><span>❌ BM settings</span><span>❌ Billing</span>
+            </div>
+          </div>
+
+          <div class="person-node pn-partner">
+            <div class="pn-top">
+              <span class="pn-ico">🤝</span>
+              <div><div class="pn-name">Partner (Agency BM)</div><div class="pn-sc">External via BM ID</div></div>
+              <span class="pn-badge" style="background:rgba(255,200,50,0.1);color:#ffc832;border-color:rgba(255,200,50,0.25)">External</span>
+            </div>
+            <div class="pn-can">
+              <span>✅ Shared assets only</span><span>❌ Your BM</span><span>✅ Revoke anytime</span><span>✅ Their own team</span>
+            </div>
+          </div>
+
+          <div class="person-node pn-sysuser">
+            <div class="pn-top">
+              <span class="pn-ico">🤖</span>
+              <div><div class="pn-name">System User</div><div class="pn-sc">API / Automations</div></div>
+              <span class="pn-badge" style="background:rgba(79,195,247,0.1);color:#4fc3f7;border-color:rgba(79,195,247,0.25)">Non-human</span>
+            </div>
+            <div class="pn-can">
+              <span>✅ API tokens</span><span>✅ Assigned assets</span><span>✅ Long-lived tokens</span><span>❌ No UI login</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="hier-mid">
+        <div class="hier-mid-line"></div>
+        <div class="hier-mid-label">BM</div>
+        <div class="hier-mid-line"></div>
+      </div>
+
+      <div class="hier-half">
+        <div class="h-drop"></div>
+        <div class="hier-lbl hl-assets">📦 Assets Inside BM</div>
+        <div class="h-drop-s"></div>
+        <div class="asset-stack">
+
+          <div class="arc an-page-s">
+            <div class="arc-left"><span class="arc-ico">📄</span><div><div class="arc-title" style="color:var(--pg)">Facebook Page</div><div class="arc-sub">Brand presence &amp; organic content</div></div></div>
+            <div class="arc-roles">
+              <span class="role-tag rt-admin">Admin</span><span class="role-tag rt-editor">Editor</span>
+              <span class="role-tag rt-mod">Moderator</span><span class="role-tag rt-adv">Advertiser</span>
+              <span class="role-tag rt-analyst">Analyst</span>
+            </div>
+          </div>
+
+          <div class="arc an-adacc-s">
+            <div class="arc-left"><span class="arc-ico">💳</span><div><div class="arc-title" style="color:var(--ad)">Ad Account</div><div class="arc-sub">Campaigns, budget &amp; billing</div></div></div>
+            <div class="arc-roles">
+              <span class="role-tag rt-admin">Admin</span><span class="role-tag rt-adv">Advertiser</span>
+              <span class="role-tag rt-analyst">Analyst</span>
+            </div>
+          </div>
+
+          <div class="arc an-ig-s">
+            <div class="arc-left"><span class="arc-ico">📸</span><div><div class="arc-title" style="color:var(--ig)">Instagram</div><div class="arc-sub">Linked via FB Page</div></div></div>
+            <div class="arc-roles">
+              <span class="role-tag rt-admin">Full Access</span><span class="role-tag rt-adv">Create Ads</span>
+              <span class="role-tag rt-analyst">View Only</span>
+            </div>
+          </div>
+
+          <div class="arc an-pixel-s">
+            <div class="arc-left"><span class="arc-ico">🔬</span><div><div class="arc-title" style="color:var(--px)">Pixel / CAPI</div><div class="arc-sub">Tracking, shared to ad accounts</div></div></div>
+            <div class="arc-roles">
+              <span class="role-tag rt-admin">Admin</span><span class="role-tag rt-adv">Advertiser</span>
+              <span class="role-tag rt-analyst">Analyst</span>
+            </div>
+          </div>
+
+          <div class="arc an-catalog-s">
+            <div class="arc-left"><span class="arc-ico">🗃</span><div><div class="arc-title" style="color:var(--ct)">Catalog</div><div class="arc-sub">Product feeds for DPA ads</div></div></div>
+            <div class="arc-roles">
+              <span class="role-tag rt-admin">Admin</span><span class="role-tag rt-adv">Advertiser</span>
+              <span class="role-tag rt-analyst">Analyst</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="hier-note">
+      <span>ℹ️</span>
+      <span>People are assigned to the <strong>BM first</strong> (as Admin or Employee), then individually assigned to specific assets with a separate role. An Employee only sees the assets they're explicitly given access to — nothing else.</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ -->
+  <!-- E. WHAT EACH ROLE CAN DO       -->
+  <!-- ═══════════════════════════════ -->
+  <div class="sec" id="roles">
+    <div class="sec-title"><span style="color:#4f8ef7;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;flex-shrink:0">05</span><span>— What Each Person Can Actually Do</span></div>
+    <div class="flows-grid">
+
+      <div class="flow-card" style="border-color:rgba(79,142,247,0.35)">
+        <div class="fc-header"><div class="fc-avatar fca-bm">👑</div><div><div class="fc-name">BM Admin</div><div class="fc-role">business manager level</div></div></div>
+        <ul class="access-list">
+          <li><span class="tk">✅</span><span>Add/remove any user from BM or any asset</span></li>
+          <li><span class="tk">✅</span><span>Access every asset — pages, ad accounts, pixels</span></li>
+          <li><span class="tk">✅</span><span>Invite partner agencies &amp; assign asset access</span></li>
+          <li><span class="tk">✅</span><span>Create/delete ad accounts, pixels, catalogs</span></li>
+          <li><span class="tk">✅</span><span>Manage billing &amp; payment methods</span></li>
+          <li><span class="tk">⚠️</span><span style="color:#ff9999">Can lock out ALL other admins if misused</span></li>
+        </ul>
+      </div>
+
+      <div class="flow-card">
+        <div class="fc-header"><div class="fc-avatar fca-page">🧑</div><div><div class="fc-name">BM Employee</div><div class="fc-role">business manager level</div></div></div>
+        <ul class="access-list">
+          <li><span class="tk">❌</span><span>Cannot see BM settings or other users</span></li>
+          <li><span class="tk">❌</span><span>Cannot add/remove people</span></li>
+          <li><span class="tk">✅</span><span>Sees only assets explicitly assigned to them</span></li>
+          <li><span class="tk">✅</span><span>Works within the role given per asset</span></li>
+          <li><span class="tk">❌</span><span>Cannot access billing or payment info</span></li>
+          <li><span class="tk">ℹ️</span><span style="color:var(--mut)">Safest role for day-to-day media buyers</span></li>
+        </ul>
+      </div>
+
+      <div class="flow-card" style="border-color:rgba(46,192,138,0.25)">
+        <div class="fc-header"><div class="fc-avatar fca-page">📄</div><div><div class="fc-name">Page Admin</div><div class="fc-role">facebook page level only</div></div></div>
+        <ul class="access-list">
+          <li><span class="tk">✅</span><span>Publish posts, stories, reels on the Page</span></li>
+          <li><span class="tk">✅</span><span>Manage comments, messages, DMs</span></li>
+          <li><span class="tk">✅</span><span>Add/remove other Page roles</span></li>
+          <li><span class="tk">✅</span><span>Create ads using the Page identity</span></li>
+          <li><span class="tk">❌</span><span>Cannot access the BM itself</span></li>
+          <li><span class="tk">❌</span><span>Cannot see ad account billing or data</span></li>
+        </ul>
+      </div>
+
+      <div class="flow-card" style="border-color:rgba(247,147,79,0.25)">
+        <div class="fc-header"><div class="fc-avatar fca-ad">💳</div><div><div class="fc-name">Ad Account Admin</div><div class="fc-role">ad account level only</div></div></div>
+        <ul class="access-list">
+          <li><span class="tk">✅</span><span>Create, edit, pause, delete campaigns</span></li>
+          <li><span class="tk">✅</span><span>Manage billing &amp; payment methods</span></li>
+          <li><span class="tk">✅</span><span>Add/remove users from this ad account</span></li>
+          <li><span class="tk">✅</span><span>Full reporting &amp; data access</span></li>
+          <li><span class="tk">❌</span><span>Cannot access the BM or other ad accounts</span></li>
+          <li><span class="tk">❌</span><span>Cannot touch the Facebook Page directly</span></li>
+        </ul>
+      </div>
+
+      <div class="flow-card">
+        <div class="fc-header"><div class="fc-avatar fca-ad">🖊</div><div><div class="fc-name">Advertiser / Media Buyer</div><div class="fc-role">ad account — restricted</div></div></div>
+        <ul class="access-list">
+          <li><span class="tk">✅</span><span>Build and launch campaigns &amp; ad sets</span></li>
+          <li><span class="tk">✅</span><span>Edit existing campaigns and creatives</span></li>
+          <li><span class="tk">✅</span><span>View all reporting and performance data</span></li>
+          <li><span class="tk">❌</span><span>Cannot change billing or payment method</span></li>
+          <li><span class="tk">❌</span><span>Cannot add or remove other users</span></li>
+          <li><span class="tk">ℹ️</span><span style="color:var(--mut)">Best role for external freelancers / agencies</span></li>
+        </ul>
+      </div>
+
+      <div class="flow-card" style="border-color:rgba(255,200,50,0.2)">
+        <div class="fc-header"><div class="fc-avatar fca-part">🤝</div><div><div class="fc-name">Partner (Agency BM)</div><div class="fc-role">connected via partner bm id</div></div></div>
+        <ul class="access-list">
+          <li><span class="tk">✅</span><span>Accesses only the specific assets you share</span></li>
+          <li><span class="tk">✅</span><span>Agency manages their own team internally</span></li>
+          <li><span class="tk">✅</span><span>You can revoke all access in one click</span></li>
+          <li><span class="tk">❌</span><span>Never inside your BM — connected externally</span></li>
+          <li><span class="tk">❌</span><span>Cannot see your other assets or users</span></li>
+          <li><span class="tk">⚠️</span><span style="color:#ffc870">Never add agency staff directly into your BM</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="page-divider"></div>
+
+  <!-- ═══════════════════════════════ -->
+  <!-- F. HACK DANGER                 -->
+  <!-- ═══════════════════════════════ -->
+  <div class="sec" id="hacked">
+    <div class="sec-title"><span style="color:#4f8ef7;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;flex-shrink:0">06</span><span>— What Happens When Each Account Gets Hacked</span></div>
+    <div class="hack-intro">
+      <strong>This is the most critical section.</strong> The damage scales dramatically depending on which level that person had access to. A hacked BM Admin is catastrophic and potentially irreversible. Click each row to see the full blast radius.
+    </div>
+    <div class="hack-cards">
+
+      <div class="hack-card" onclick="tog(this)">
+        <div class="hc-header"><div class="sev-bar sv-lo"></div><div class="hc-main"><div class="hc-title">📊 Analyst Account Hacked</div><div class="hc-who">View-only role · read access only</div></div><span class="sev-badge sb-lo">Low Risk</span><span class="exp-arr">▼</span></div>
+        <div class="hc-body"><div class="hc-div"></div>
+          <div class="dmg-grid">
+            <div class="dmg-item"><div class="dl2">What attacker can see</div><div class="dv">Performance reports, campaign metrics, audience insights</div></div>
+            <div class="dmg-item"><div class="dl2">What attacker can DO</div><div class="dv">Nothing. Analysts are read-only — no edits, no spending</div></div>
+            <div class="dmg-item"><div class="dl2">Financial damage</div><div class="dv">None — cannot access billing or spend budget</div></div>
+            <div class="dmg-item"><div class="dl2">Recovery difficulty</div><div class="dv">Very easy — remove user from asset, done</div></div>
+          </div>
+          <div class="hc-tip"><strong>Main risk:</strong> Competitor intelligence — strategy, best-performing ads, and audience segments. Remove access immediately.</div>
+        </div>
+      </div>
+
+      <div class="hack-card" onclick="tog(this)">
+        <div class="hc-header"><div class="sev-bar sv-lo"></div><div class="hc-main"><div class="hc-title">✏️ Page Editor / Moderator Hacked</div><div class="hc-who">Page content &amp; comments only</div></div><span class="sev-badge sb-lo">Low–Med</span><span class="exp-arr">▼</span></div>
+        <div class="hc-body"><div class="hc-div"></div>
+          <div class="dmg-grid">
+            <div class="dmg-item"><div class="dl2">What attacker can do</div><div class="dv">Post content on your Page, reply to comments, manage messages</div></div>
+            <div class="dmg-item"><div class="dl2">Brand damage</div><div class="dv">High — can post offensive/false content before you notice</div></div>
+            <div class="dmg-item"><div class="dl2">Financial damage</div><div class="dv">None — no billing or ad account access</div></div>
+            <div class="dmg-item"><div class="dl2">Recovery difficulty</div><div class="dv">Easy — remove role, delete rogue posts</div></div>
+          </div>
+          <div class="hc-tip"><strong>Main risk:</strong> Reputational damage. Remove role, delete content, post a correction if needed. No financial exposure.</div>
+        </div>
+      </div>
+
+      <div class="hack-card" onclick="tog(this)">
+        <div class="hc-header"><div class="sev-bar sv-me"></div><div class="hc-main"><div class="hc-title">🖊 Advertiser / Media Buyer Hacked</div><div class="hc-who">Can create campaigns &amp; spend budget</div></div><span class="sev-badge sb-me">Medium</span><span class="exp-arr">▼</span></div>
+        <div class="hc-body"><div class="hc-div"></div>
+          <div class="dmg-grid">
+            <div class="dmg-item"><div class="dl2">What attacker can do</div><div class="dv">Create campaigns, change targeting, edit creatives, boost spend</div></div>
+            <div class="dmg-item"><div class="dl2">Financial damage</div><div class="dv">Can drain ad budget but CANNOT change billing or increase credit limits</div></div>
+            <div class="dmg-item"><div class="dl2">Data exposure</div><div class="dv">Full campaign data, audiences, pixel events, conversions</div></div>
+            <div class="dmg-item"><div class="dl2">Recovery difficulty</div><div class="dv">Moderate — remove user, pause campaigns, review spend</div></div>
+          </div>
+          <div class="hc-tip"><strong>Main risk:</strong> Budget drain. Set strict daily budget caps — spending stops at the cap regardless of what an advertiser does.</div>
+        </div>
+      </div>
+
+      <div class="hack-card" onclick="tog(this)">
+        <div class="hc-header"><div class="sev-bar sv-hi"></div><div class="hc-main"><div class="hc-title">💳 Ad Account Admin Hacked</div><div class="hc-who">Full billing + user control on ad account</div></div><span class="sev-badge sb-hi">High Risk</span><span class="exp-arr">▼</span></div>
+        <div class="hc-body"><div class="hc-div"></div>
+          <div class="dmg-grid">
+            <div class="dmg-item"><div class="dl2">What attacker can do</div><div class="dv">Everything an advertiser can, PLUS change billing method and modify users</div></div>
+            <div class="dmg-item"><div class="dl2">Financial damage</div><div class="dv">Can swap payment method to their card or run up charges on yours</div></div>
+            <div class="dmg-item"><div class="dl2">Access damage</div><div class="dv">Can remove other admins from the ad account</div></div>
+            <div class="dmg-item"><div class="dl2">Recovery difficulty</div><div class="dv">Hard — need a BM Admin to intervene and reverse changes</div></div>
+          </div>
+          <div class="hc-tip"><strong>Key insight:</strong> Never give Ad Account Admin to external parties. Advertiser role is enough for agencies to run campaigns without touching billing.</div>
+        </div>
+      </div>
+
+      <div class="hack-card" onclick="tog(this)">
+        <div class="hc-header"><div class="sev-bar sv-hi"></div><div class="hc-main"><div class="hc-title">📄 Facebook Page Admin Hacked</div><div class="hc-who">Manages roles &amp; brand identity</div></div><span class="sev-badge sb-hi">High Risk</span><span class="exp-arr">▼</span></div>
+        <div class="hc-body"><div class="hc-div"></div>
+          <div class="dmg-grid">
+            <div class="dmg-item"><div class="dl2">What attacker can do</div><div class="dv">Post as your brand, change name/profile/cover, add their own admins, remove your access</div></div>
+            <div class="dmg-item"><div class="dl2">Brand damage</div><div class="dv">Severe — can fully impersonate or alter your brand identity</div></div>
+            <div class="dmg-item"><div class="dl2">Access damage</div><div class="dv">Can remove other Page Admins. BM Admin overrides if Page is BM-owned.</div></div>
+            <div class="dmg-item"><div class="dl2">Recovery difficulty</div><div class="dv">Moderate if in BM — BM Admin can fix. Permanent lock-out if personally owned.</div></div>
+          </div>
+          <div class="hc-tip"><strong>Critical lesson:</strong> Always own your Page inside a Business Manager. On a personal page with no BM, you could be permanently locked out.</div>
+        </div>
+      </div>
+
+      <div class="hack-card crit-card" onclick="tog(this)">
+        <div class="hc-header"><div class="sev-bar sv-cr"></div><div class="hc-main"><div class="hc-title">🚨 Business Manager Admin Hacked</div><div class="hc-who" style="color:#ff6060">Worst possible scenario — controls everything</div></div><span class="sev-badge sb-cr">☠️ CRITICAL</span><span class="exp-arr">▼</span></div>
+        <div class="hc-body"><div class="hc-div" style="background:rgba(255,23,68,0.2)"></div>
+          <div class="dmg-grid">
+            <div class="dmg-item"><div class="dl2">Immediate access</div><div class="dv" style="color:#ff9999">Every ad account, every page, every pixel, every catalog — all of it</div></div>
+            <div class="dmg-item"><div class="dl2">Financial damage</div><div class="dv" style="color:#ff9999">Drain all ad budgets, add payment methods, approve large charges</div></div>
+            <div class="dmg-item"><div class="dl2">Lock-out risk</div><div class="dv" style="color:#ff9999">Can remove ALL other admins — permanently lock you out of your own BM</div></div>
+            <div class="dmg-item"><div class="dl2">Data theft</div><div class="dv" style="color:#ff9999">Full customer audiences, pixel events, CRM lists, revenue conversion data</div></div>
+            <div class="dmg-item"><div class="dl2">Recovery difficulty</div><div class="dv" style="color:#ff5555">Extremely hard. Meta support required. Days or weeks. Some assets lost permanently.</div></div>
+            <div class="dmg-item"><div class="dl2">Cascade damage</div><div class="dv" style="color:#ff9999">Can revoke all agency access, breaking every active campaign immediately</div></div>
+          </div>
+          <div class="hc-tip"><strong>PROTECTION:</strong> (1) Always have 2+ BM Admins. (2) Hardware security key — not SMS 2FA. (3) Company email with enforced 2FA. (4) Audit BM admins every quarter.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ -->
+  <!-- G. WITH vs WITHOUT BM          -->
+  <!-- ═══════════════════════════════ -->
+  <div class="sec" id="compare">
+    <div class="sec-title"><span style="color:#4f8ef7;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;flex-shrink:0">07</span><span>— With Business Manager vs Without</span></div>
+    <div class="compare-grid">
+      <div class="compare-card cc-bad">
+        <div class="cc-title">❌ Without Business Manager</div>
+        <ul class="cc-list">
+          <li><span>💀</span>If Page creator's account is hacked or deleted, the Page may be gone forever</li>
+          <li><span>💀</span>No central way to remove a rogue person's access across all assets at once</li>
+          <li><span>💀</span>Agency staff added as personal admins — chase each one when they leave</li>
+          <li><span>💀</span>Ad accounts tied to personal accounts — data can leave with the person</li>
+          <li><span>💀</span>No audit trail of who has access to what</li>
+          <li><span>💀</span>Pixel owned personally — leaving employee could lose pixel history</li>
+        </ul>
+      </div>
+      <div class="compare-card cc-good">
+        <div class="cc-title">✅ With Business Manager</div>
+        <ul class="cc-list">
+          <li><span>🛡️</span>BM owns assets — removing a user removes all their access instantly</li>
+          <li><span>🛡️</span>Agency gets Partner access — one click revokes their entire team</li>
+          <li><span>🛡️</span>Full audit trail of every person and which assets they can access</li>
+          <li><span>🛡️</span>System users for API — no real person's account tied to integrations</li>
+          <li><span>🛡️</span>Pixel, catalog, and data survive staff turnover entirely</li>
+          <li><span>🛡️</span>Multiple admins as backup — single point of failure eliminated</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════ -->
+  <!-- H. GOLDEN RULES                -->
+  <!-- ═══════════════════════════════ -->
+  <div class="sec" id="rules">
+    <div class="sec-title"><span style="color:#4f8ef7;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;flex-shrink:0">08</span><span>— Golden Rules of Meta Access Security</span></div>
+    <div class="rules-grid">
+      <div class="rule-card"><div class="rn">01</div><h4>Always have 2 BM Admins</h4><p>If your only BM Admin loses access — hacked, deleted, left the company — you may be permanently locked out. Always maintain a backup admin on a separate secure account.</p></div>
+      <div class="rule-card"><div class="rn">02</div><h4>Create everything inside BM</h4><p>Pages, pixels, ad accounts, catalogs — all created inside the BM, never personal accounts. Assets belong to the business, not the individual.</p></div>
+      <div class="rule-card"><div class="rn">03</div><h4>Never give more access than needed</h4><p>A media buyer needs Advertiser, not Admin. An agency needs Partner access, not an employee seat. Match the role to the minimum required task.</p></div>
+      <div class="rule-card"><div class="rn">04</div><h4>Agencies via Partner BM only</h4><p>Never add agency staff as direct users in your BM. Connect via their Business Manager ID. When the relationship ends, one click removes their entire team instantly.</p></div>
+      <div class="rule-card"><div class="rn">05</div><h4>Hardware 2FA for BM Admins</h4><p>SMS 2FA can be SIM-swapped. BM Admin accounts must use an authenticator app or hardware security key (YubiKey). Non-negotiable for high-spend accounts.</p></div>
+      <div class="rule-card"><div class="rn">06</div><h4>Audit access quarterly</h4><p>Go to Business Settings → People every 3 months. Remove anyone who no longer needs access. Ex-employees with dormant access are a silent, ongoing security risk.</p></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function navJump(id) {
+  var el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function tog(card) {
+  var body = card.querySelector('.hc-body');
+  var arrow = card.querySelector('.exp-arr');
+  var isOpen = body.classList.contains('open');
+  document.querySelectorAll('.hc-body').forEach(function(b){ b.classList.remove('open'); });
+  document.querySelectorAll('.exp-arr').forEach(function(a){ a.classList.remove('open'); });
+  if (!isOpen) { body.classList.add('open'); arrow.classList.add('open'); }
+}
+
+// Active nav highlighting
+var sections = document.querySelectorAll('.sec');
+var navLinks = document.querySelectorAll('.nav-btn');
+window.addEventListener('scroll', function() {
+  var scrollY = window.scrollY + 80;
+  sections.forEach(function(s) {
+    if (s.offsetTop <= scrollY && s.offsetTop + s.offsetHeight > scrollY) {
+      navLinks.forEach(function(a){ a.classList.remove('active'); });
+      var match = document.querySelector('.nav-btn[onclick="navJump(\'' + s.id + '\')"]');
+      if (match) match.classList.add('active');
+    }
+  });
+});
+</script>
+</body>
+</html>
